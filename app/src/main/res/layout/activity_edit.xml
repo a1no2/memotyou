@@ -1,17 +1,33 @@
 <LinearLayout
+
 	android:layout_height="match_parent"
 	android:layout_width="match_parent"
 	xmlns:android="http://schemas.android.com/apk/res/android"
 	android:orientation="vertical"
-	android:weightSum="5">
+	android:weightSum="8">
 
+	<android.support.v7.widget.Toolbar
+		android:id="@+id/toolbar_edit"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:background="#0ff"/>
+
+	<Button
+		android:id="@+id/a"
+		android:onClick="a"
+		android:text="後で消すボタン"
+		android:layout_width="match_parent"
+		android:layout_height="0dp"
+		android:layout_weight="1"/>
 	<EditText
+		android:id="@+id/title_Edittext"
 		android:layout_width="match_parent"
 		android:layout_height="0dp"
 		android:layout_weight="1"/>
 
 	<EditText
+		android:id="@+id/content_Edittext"
 		android:layout_width="match_parent"
 		android:layout_height="0dp"
-		android:layout_weight="4"/>
+		android:layout_weight="6"/>
 </LinearLayout>
