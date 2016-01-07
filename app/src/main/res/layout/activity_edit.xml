@@ -13,9 +13,8 @@
 		android:background="#0ff"/>
 
 	<Button
-		android:id="@+id/a"
-		android:onClick="a"
-		android:text="後で消すボタン"
+		android:id="@+id/save_btn"
+		android:text="保存、後で消すか移動させる"
 		android:layout_width="match_parent"
 		android:layout_height="0dp"
 		android:layout_weight="1"/>

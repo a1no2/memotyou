@@ -9,9 +9,9 @@ public class MyDB extends SQLiteOpenHelper{
     private static final int DB_VERSION = 1;
     public static final String TABLE_NAME = "mydata";
 
-    public final String ID = "_id";             //ID　PK　おーといんくりめんと
-    public final String title  = "title";       //メモ帳の件名、タイトル
-    public final String content = "content";    //メモ帳の本文、内容
+    public static final String ID = "_id";             //ID　PK　オートインクリメント
+    public static final String title  = "title";       //メモ帳の件名、タイトル
+    public static final String content = "content";    //メモ帳の本文、内容
 
     String TABLEcreateSQL = "create table " + TABLE_NAME + "("
             + ID + " integer auto_increment primary key, "
