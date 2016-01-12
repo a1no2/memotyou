@@ -7,16 +7,16 @@ import android.database.sqlite.SQLiteOpenHelper;
 public class MyDB extends SQLiteOpenHelper{
     private static final String DB_name = "mydata.db";
     private static final int DB_VERSION = 1;
-    public static final String TABLE_NAME = "mydata";
+    public static final String TABLE_NAME = "mymemodata";
 
-    public static final String ID = "_id";             //ID　PK　オートインクリメント
-    public static final String title  = "title";       //メモ帳の件名、タイトル
-    public static final String content = "content";    //メモ帳の本文、内容
+    public static final String memo_ID = "_id";             //ID PK オートインクリメント
+    public static final String memo_title  = "title";       //メモ帳の件名、タイトル
+    public static final String memo_mainText = "maintext";  //メモ帳の本文、内容
 
     String TABLEcreateSQL = "create table " + TABLE_NAME + "("
-            + ID + " integer auto_increment primary key, "
-            + title + " text, "
-            + content + " text)";
+            + memo_ID + " integer primary key autoincrement, "
+            + memo_title + " text, "
+            + memo_mainText + " text)";
 
 
     public MyDB(Context context){
