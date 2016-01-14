@@ -10,7 +10,8 @@
 		android:id="@+id/toolbar_edit"
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
-		android:background="#0ff"/>
+		android:titleTextColor="#fff"
+		android:background="#000"/>
 
 	<Button
 		android:id="@+id/save_btn"
@@ -22,11 +23,13 @@
 		android:id="@+id/title_Edittext"
 		android:layout_width="match_parent"
 		android:layout_height="0dp"
-		android:layout_weight="1"/>
+		android:layout_weight="1"
+		android:gravity="top|left"/>
 
 	<EditText
 		android:id="@+id/maintext_Edittext"
 		android:layout_width="match_parent"
 		android:layout_height="0dp"
-		android:layout_weight="6"/>
+		android:layout_weight="6"
+		android:gravity="top|left"/>
 </LinearLayout>
