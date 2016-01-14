@@ -36,6 +36,7 @@ public class EditActivity extends AppCompatActivity implements View.OnClickListe
         create_boolean = intent.getBooleanExtra("create_boolean", true);
         save_id = (intent.getIntExtra("saveID",-1));
 
+        
         //DB
         MyDB DB_hlpr = new MyDB(getApplicationContext());
         mydb = DB_hlpr.getWritableDatabase();       //w読み書き R読み込み
