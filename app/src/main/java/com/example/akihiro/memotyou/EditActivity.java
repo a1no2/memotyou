@@ -1,14 +1,17 @@
 package com.example.akihiro.memotyou;
 
+import android.content.ClipData;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
+import android.media.browse.MediaBrowser;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -24,19 +27,23 @@ public class EditActivity extends AppCompatActivity implements View.OnClickListe
     static EditText maintext_Edittext;
 
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit);
-        setSupportActionBar((Toolbar) findViewById(R.id.toolbar_edit));      //ツールバー
 
         //遷移
         Intent intent =getIntent();
         create_boolean = intent.getBooleanExtra("create_boolean", true);
         save_id = (intent.getIntExtra("saveID",-1));
 
-        
+        //ツールバー
+        setSupportActionBar((Toolbar) findViewById(R.id.toolbar_edit));
+        //ツールバーに戻るボタン追加
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setHomeButtonEnabled(true);
+
+
         //DB
         MyDB DB_hlpr = new MyDB(getApplicationContext());
         mydb = DB_hlpr.getWritableDatabase();       //w読み書き R読み込み
@@ -47,7 +54,6 @@ public class EditActivity extends AppCompatActivity implements View.OnClickListe
         title_Edittext = (EditText)findViewById(R.id.title_Edittext);
         maintext_Edittext = (EditText)findViewById(R.id.maintext_Edittext);
 
-        String aa ="取ってきたIDの確認　　";
         c = mydb.query(
                 MyDB.TABLE_NAME,
                 new String[]{MyDB.memo_ID,MyDB.memo_title,MyDB.memo_mainText},
@@ -59,10 +65,6 @@ public class EditActivity extends AppCompatActivity implements View.OnClickListe
             maintext_Edittext.setText(c.getString(c.getColumnIndexOrThrow(MyDB.memo_mainText)));
         }
 
-
-
-
-
     }
 
 
@@ -72,6 +74,21 @@ public class EditActivity extends AppCompatActivity implements View.OnClickListe
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.menu_edit,menu);
         return super.onCreateOptionsMenu(menu);
+    }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item){
+        int id = item.getItemId();
+        switch (id){
+            case android.R.id.home:
+                finish();
+                break;
+
+//            case android.R.id.save_icon:
+            default:
+                break;
+        }
+
+        return true;
     }
 
 
