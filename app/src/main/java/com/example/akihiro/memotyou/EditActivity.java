@@ -25,6 +25,7 @@ public class EditActivity extends AppCompatActivity implements View.OnClickListe
     static int save_id;                    //保存する場合どのIDに保存するか
     static EditText title_Edittext;
     static EditText maintext_Edittext;
+    Toolbar toolbar;
 
 
     @Override
@@ -38,10 +39,12 @@ public class EditActivity extends AppCompatActivity implements View.OnClickListe
         save_id = (intent.getIntExtra("saveID",-1));
 
         //ツールバー
-        setSupportActionBar((Toolbar) findViewById(R.id.toolbar_edit));
+        toolbar = (Toolbar) findViewById(R.id.toolbar_edit);
+        setSupportActionBar(toolbar);
         //ツールバーに戻るボタン追加
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setHomeButtonEnabled(true);
+        //ナビゲーションアイコンのボタン押せるようにする
+//        getSupportActionBar().setHomeButtonEnabled(true);
 
 
         //DB
@@ -54,16 +57,26 @@ public class EditActivity extends AppCompatActivity implements View.OnClickListe
         title_Edittext = (EditText)findViewById(R.id.title_Edittext);
         maintext_Edittext = (EditText)findViewById(R.id.maintext_Edittext);
 
-        c = mydb.query(
-                MyDB.TABLE_NAME,
-                new String[]{MyDB.memo_ID,MyDB.memo_title,MyDB.memo_mainText},
-                MyDB.memo_ID + " = ?",new String[] {""+String.valueOf(save_id)},
-                null,null,null,null
-        );
-        while (c.moveToNext()){
-            title_Edittext.setText(c.getString(c.getColumnIndexOrThrow(MyDB.memo_title)));
-            maintext_Edittext.setText(c.getString(c.getColumnIndexOrThrow(MyDB.memo_mainText)));
+
+        //
+        if(create_boolean){
+        }else{
+            c = mydb.query(
+                    MyDB.TABLE_NAME,
+                    new String[]{MyDB.memo_ID,MyDB.memo_title,MyDB.memo_mainText},
+                    MyDB.memo_ID + " = ?",new String[] {""+String.valueOf(save_id)},
+                    null,null,null,null
+            );
+            while (c.moveToNext()){
+                title_Edittext.setText(c.getString(c.getColumnIndexOrThrow(MyDB.memo_title)));
+                maintext_Edittext.setText(c.getString(c.getColumnIndexOrThrow(MyDB.memo_mainText)));
+            }
         }
+
+//        toolbar instanceof(R.menu.menu_edit);
+
+
+
 
     }
 
@@ -82,8 +95,6 @@ public class EditActivity extends AppCompatActivity implements View.OnClickListe
             case android.R.id.home:
                 finish();
                 break;
-
-//            case android.R.id.save_icon:
             default:
                 break;
         }
